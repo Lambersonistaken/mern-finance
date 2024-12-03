@@ -1,15 +1,15 @@
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import "./App.css"
 
 export default function App() {
   return (
-    <header>
-      <SignedOut>
-        <SignInButton />
-      </SignedOut>
-      <SignedIn>
-        <UserButton />
-      </SignedIn>
-    </header>
+        <Router>  
+          <div className="app-container">
+            <Routes>
+              <Route path="/" element={<h1>Dashboard</h1>}></Route>
+              <Route path="/auth" element={<h1>Sign In</h1>}></Route>
+            </Routes>
+          </div>
+        </Router>
   );
 }
