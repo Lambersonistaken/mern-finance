@@ -1,4 +1,5 @@
 import React from 'react'
+import "./financial-record.css"
 
 const FinancialRecordForm = () => {
   return (
