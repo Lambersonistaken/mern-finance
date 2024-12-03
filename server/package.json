@@ -9,6 +9,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "scripts": {
+    "start": "node ./build/index.ts",
+    "build": "tsc -p .",
+    "dev": "nodemon ./src/index.ts"
+  },
   "dependencies": {
     "@types/express": "^5.0.0",
     "@types/mongoose": "^5.11.97",
