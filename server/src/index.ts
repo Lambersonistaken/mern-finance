@@ -20,7 +20,7 @@ mongoose.connect(mongoURI).then(() => {
     .catch((err) => console.error("Failed to connect MONGODB", err))
 
 
-app.use("/financial-records",);
+app.use("/financial-records", financialRecordRouter);
 
 app.listen(port, () => {
     console.log(`Server running on Port ${port}`)
