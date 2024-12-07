@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 
 interface FinancialRecord {
@@ -37,4 +37,16 @@ export const FinancialRecordsProvider = ({children,} : {children: React.ReactNod
         </FinancialRecordsContext.Provider>
     )
 
+}
+
+export const useFinancialRecords = () => {
+    const context = useContext<FinancialRecordContextType |undefined>(
+        FinancialRecordsContext
+    );
+
+    if(!context) {
+        throw new Error("useFinancialRecords must be used within a FinancialRecordProvider")
+    }
+
+    return context;
 }
