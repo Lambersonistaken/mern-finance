@@ -2,31 +2,33 @@
 import React, { useState } from 'react'
 import "./financial-record.css"
 import { useUser } from '@clerk/clerk-react';
+import { useFinancialRecords } from '../../contexts/financial-record-context';
 
 const FinancialRecordForm = () => {
     const {user} = useUser();
     const [description, setDescription] = useState<string>("");
     const [amount, setAmount] = useState<string>("");
     const [category, setCategory] = useState<string>("");
-    const [method, setMethod] = useState<string>("");
+    const [paymentMethod, setPaymentMethod] = useState<string>("");
+    const {addRecord} = useFinancialRecords()
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const newRecord = {
-            userId: user?.id,
+            userId: user?.id ?? "",
             date: new Date(),
             description: description,
             amount: parseFloat(amount),
             category: category,
-            method: method
+            paymentMethod: paymentMethod
         }
 
-        // addRecord(newRecord)
+        addRecord(newRecord)
         setDescription("")
         setAmount("")
         setCategory("")
-        setMethod("")
+        setPaymentMethod("")
     }
 
 
@@ -56,7 +58,7 @@ const FinancialRecordForm = () => {
         </div>
         <div className="form-field">
             <label>Payment method:</label>
-            <select required className='input' value={method} onChange={(e) => setMethod(e.target.value)}>
+            <select required className='input' value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)}>
                 <option value="">Select a payment method</option>
                 <option value="Credit Card">Credit Card</option>
                 <option value="Cash">Cash</option>
